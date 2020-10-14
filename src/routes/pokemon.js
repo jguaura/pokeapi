@@ -8,4 +8,6 @@ import {getAllPokemons, getOnePokemon, getPokemonByType} from '../controllers/Po
 router.get('/', customWare, getAllPokemons)
 router.get('/:id', getOnePokemon)
 router.post('/', getPokemonByType)
+
+
 export default router
