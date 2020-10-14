@@ -25,9 +25,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Initialization
 var app = (0, _express["default"])(); // Middlewares
 
+app.use((0, _compression["default"])());
 app.use((0, _morgan["default"])('dev'));
-app.use((0, _express.json)());
-app.use((0, _compression["default"])()); // Routes use
+app.use((0, _express.json)()); // Routes use
 
 app.use('/api/pokemon', _pokemon["default"]);
 var _default = app;
