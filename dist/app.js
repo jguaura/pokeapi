@@ -29,6 +29,11 @@ app.use((0, _compression["default"])());
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _express.json)()); // Routes use
 
+app.get('/', function (req, res) {
+  res.json({
+    message: 'ok'
+  });
+});
 app.use('/api/pokemon', _pokemon["default"]);
 var _default = app;
 exports["default"] = _default;
