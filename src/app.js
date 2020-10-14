@@ -14,6 +14,9 @@ app.use(morgan('dev'))
 app.use(json())
 
 // Routes use
+app.get('/', function(req, res) {
+    res.json({message: 'ok'})
+})
 app.use('/api/pokemon', pokemonRoutes)
 
 export default app
