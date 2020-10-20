@@ -3,8 +3,12 @@ import Pokemon from '../models/Pokemon.model'
 import { Op } from 'sequelize'
 
 export async function getAllPokemons(req, res) {
+    const { offset, limit } = req.query
+
     try {
-        const response = await Pokemon.findAll({
+        const response = await Pokemon.findAndCountAll({
+            limit: limit,
+            offset: offset,
             order: [
                 ['id', 'ASC']
             ],
