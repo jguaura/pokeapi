@@ -9,8 +9,8 @@ import pokemonRoutes from './routes/pokemon'
 const app = express()
 
 // Middlewares
-app.use(compression())
 app.use(morgan('dev'))
+app.use(compression())
 app.use(json())
 
 // Routes use
