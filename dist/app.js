@@ -13,6 +13,8 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _compression = _interopRequireDefault(require("compression"));
 
+var _cors = _interopRequireDefault(require("cors"));
+
 var _pokemon = _interopRequireDefault(require("./routes/pokemon"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -27,6 +29,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var app = (0, _express["default"])(); // Middlewares
 // app.use(responseTime())
 
+app.use((0, _cors["default"])());
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use

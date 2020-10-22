@@ -1,6 +1,7 @@
 import express, { json } from 'express'
 import morgan from 'morgan'
 import compression from 'compression'
+import cors from 'cors'
 // import responseTime from 'response-time'
 
 // Routes import
@@ -11,6 +12,7 @@ const app = express()
 
 // Middlewares
 // app.use(responseTime())
+app.use(cors())
 app.use(morgan('dev'))
 app.use(compression())
 app.use(json())
