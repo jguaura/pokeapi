@@ -1,6 +1,7 @@
 import express, { json } from 'express'
 import morgan from 'morgan'
 import compression from 'compression'
+import responseTime from 'response-time'
 
 // Routes import
 import pokemonRoutes from './routes/pokemon'
@@ -9,7 +10,8 @@ import pokemonRoutes from './routes/pokemon'
 const app = express()
 
 // Middlewares
-app.use(morgan('dev'))
+app.use(responseTime())
+// app.use(morgan('dev'))
 app.use(compression())
 app.use(json())
 

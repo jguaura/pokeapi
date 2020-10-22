@@ -6,7 +6,7 @@ const router = Router()
 import {getAllPokemons, getOnePokemon} from '../controllers/Pokemon.controller'
 
 router.get('/', customWare, getAllPokemons)
-router.get('/:id', getOnePokemon)
+router.get('/:id', customWare, getOnePokemon)
 
 
 export default router

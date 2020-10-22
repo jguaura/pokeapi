@@ -10,15 +10,15 @@ export async function getAllPokemons(req, res) {
         const response = await Pokemon.findAndCountAll({
             limit: limit,
             offset: offset,
-            type: type && type,
+            type: type,
             where: type && {
-                types: { [Op.contains] : [type] }
+                types: { [Op.contains] : [type] },
             },
             order: [
                 ['id', 'ASC']
             ],
         })
-        response && res.json({response})
+        response && res.json(response)
     } catch (err) {
         console.log(err.message)
     }
