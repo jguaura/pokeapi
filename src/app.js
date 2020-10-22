@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import morgan from 'morgan'
 import compression from 'compression'
-import responseTime from 'response-time'
+// import responseTime from 'response-time'
 
 // Routes import
 import pokemonRoutes from './routes/pokemon'
