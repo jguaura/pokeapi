@@ -11,7 +11,7 @@ var _db = _interopRequireDefault(require("../database/db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Pokemon = _db["default"].define('pokemons', {
+var Pokemon = _db["default"].define('pokedos', {
   id: {
     type: _sequelize.Sequelize.INTEGER,
     primaryKey: true

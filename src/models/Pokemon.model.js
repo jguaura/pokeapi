@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize'
 import sequelize from '../database/db'
 
-const Pokemon = sequelize.define('pokemons', {
+const Pokemon = sequelize.define('pokedos', {
     id: { type: Sequelize.INTEGER, primaryKey: true },
     name: { type: Sequelize.TEXT },
     sprite: { type: Sequelize.TEXT },
