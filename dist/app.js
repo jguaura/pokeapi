@@ -33,7 +33,7 @@ app.use((0, _express.json)()); // Routes use
 
 app.get('/', function (req, res) {
   res.json({
-    message: 'ok tito'
+    message: 'ok'
   });
 });
 app.use('/api/pokemon', _pokemon["default"]);

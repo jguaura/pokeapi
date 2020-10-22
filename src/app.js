@@ -17,7 +17,7 @@ app.use(json())
 
 // Routes use
 app.get('/', function(req, res) {
-    res.json({message: 'ok tito'})
+    res.json({message: 'ok'})
 })
 app.use('/api/pokemon', pokemonRoutes)
 
