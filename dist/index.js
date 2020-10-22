@@ -21,8 +21,8 @@ function _main() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _app["default"].listen(process.env.PORT || 5000, function () {
-              return console.log("Listening on port ".concat(process.env.PORT || 4000));
+            return _app["default"].listen(process.env.PORT || 8080, function () {
+              return console.log("Listening on port ".concat(process.env.PORT || 8080));
             });
 
           case 2:
