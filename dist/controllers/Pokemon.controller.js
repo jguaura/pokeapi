@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getAllPokemons = getAllPokemons;
 exports.getOnePokemon = getOnePokemon;
-exports.getPokemonByType = getPokemonByType;
 
 var _Pokemon = _interopRequireDefault(require("../models/Pokemon.model"));
 
@@ -25,36 +24,42 @@ function getAllPokemons(_x, _x2) {
 
 function _getAllPokemons() {
   _getAllPokemons = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-    var response;
+    var _req$query, offset, limit, type, response;
+
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return _Pokemon["default"].findAll({
+            _req$query = req.query, offset = _req$query.offset, limit = _req$query.limit, type = _req$query.type;
+            _context.prev = 1;
+            _context.next = 4;
+            return _Pokemon["default"].findAndCountAll({
+              limit: limit,
+              offset: offset,
+              type: type,
+              where: type && {
+                types: _defineProperty({}, _sequelize.Op.contains, [type])
+              },
               order: [['id', 'ASC']]
             });
 
-          case 3:
+          case 4:
             response = _context.sent;
-            response && res.json({
-              response: response
-            });
-            _context.next = 10;
+            response && res.json(response);
+            _context.next = 11;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
             console.log(_context.t0.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[1, 8]]);
   }));
   return _getAllPokemons.apply(this, arguments);
 }
@@ -102,50 +107,4 @@ function _getOnePokemon() {
     }, _callee2, null, [[1, 8]]);
   }));
   return _getOnePokemon.apply(this, arguments);
-}
-
-function getPokemonByType(_x5, _x6) {
-  return _getPokemonByType.apply(this, arguments);
-}
-
-function _getPokemonByType() {
-  _getPokemonByType = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
-    var type, response;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            type = req.body.type;
-            console.log(type);
-            _context3.prev = 2;
-            _context3.next = 5;
-            return _Pokemon["default"].findAll({
-              where: {
-                types: _defineProperty({}, _sequelize.Op.contains, [type])
-              }
-            });
-
-          case 5:
-            response = _context3.sent;
-            response && res.json({
-              response: response
-            });
-            _context3.next = 12;
-            break;
-
-          case 9:
-            _context3.prev = 9;
-            _context3.t0 = _context3["catch"](2);
-            res.status(400).json({
-              message: _context3.t0.message
-            });
-
-          case 12:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3, null, [[2, 9]]);
-  }));
-  return _getPokemonByType.apply(this, arguments);
 }
