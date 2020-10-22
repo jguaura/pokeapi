@@ -26,10 +26,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Routes import
 // Initialization
 var app = (0, _express["default"])(); // Middlewares
-
-app.use((0, _responseTime["default"])()); // app.use(morgan('dev'))
+// app.use(responseTime())
 
 app.use((0, _compression["default"])());
+app.use((0, _morgan["default"])('dev'));
 app.use((0, _express.json)()); // Routes use
 
 app.get('/', function (req, res) {
