@@ -28,13 +28,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var app = (0, _express["default"])(); // Middlewares
 // app.use(responseTime())
 
-app.use((0, _compression["default"])());
 app.use((0, _morgan["default"])('dev'));
+app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use
 
 app.get('/', function (req, res) {
   res.json({
-    message: 'ok'
+    message: 'ok tito'
   });
 });
 app.use('/api/pokemon', _pokemon["default"]);

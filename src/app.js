@@ -11,13 +11,13 @@ const app = express()
 
 // Middlewares
 // app.use(responseTime())
-app.use(compression())
 app.use(morgan('dev'))
+app.use(compression())
 app.use(json())
 
 // Routes use
 app.get('/', function(req, res) {
-    res.json({message: 'ok'})
+    res.json({message: 'ok tito'})
 })
 app.use('/api/pokemon', pokemonRoutes)
 
