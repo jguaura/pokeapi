@@ -34,6 +34,7 @@ function _getAllPokemons() {
             _context.prev = 1;
             _context.next = 4;
             return _Pokemon["default"].findAndCountAll({
+              attributes: ['id', 'name', 'sprite', 'types'],
               limit: limit,
               offset: offset,
               type: type,
