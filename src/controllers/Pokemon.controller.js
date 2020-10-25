@@ -4,10 +4,11 @@ import { Op } from 'sequelize'
 
 export async function getAllPokemons(req, res) {
 
-    const { offset, limit, type } = req.query
+    const { offset, limit, type } = req.query   
 
     try {
         const response = await Pokemon.findAndCountAll({
+            attributes: ['id', 'name', 'sprite', 'types'],
             limit: limit,
             offset: offset,
             type: type,
