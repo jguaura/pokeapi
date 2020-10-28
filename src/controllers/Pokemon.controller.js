@@ -2,6 +2,15 @@
 import Pokemon from '../models/Pokemon.model'
 import { Op } from 'sequelize'
 
+/**
+ * @swagger
+ * /:
+ * get:
+ *  description: used to get the list of all pokemons
+ *  responses:
+ *      '200':
+ *         description: successful response
+ */
 export async function getAllPokemons(req, res) {
 
     const { offset, limit, type } = req.query   

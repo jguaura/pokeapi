@@ -1,0 +1,71 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Poke-API",
+        "description": "Poke-API test",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8080",
+    "basepath": "/api/",
+    "tags": [
+        {
+            "name": "Pokemon",
+            "description": "List all pokemons"
+        }
+    ],
+   "schemes": [
+       "http"
+   ],
+   "consumes": [
+       "application/json"
+   ],
+   "produces": [
+       "application/json"
+   ],
+   "paths": {
+       "/pokemon": {
+           "get": {
+               "tags": [ "pokemon" ],
+               "summary": "Get all pokemons",
+               "responses": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Pokemons"
+                    }
+               }
+           }
+       }
+   },
+   "definitions": {
+       "Pokemons": {
+           "required": [
+               "name",
+               "id",
+               "sprite",
+               "types"
+           ],
+           "properties": {
+               "id": {
+                   "type": "integer",
+                   "uniqueItems": true
+               },
+               "name": {
+                   "type": "string"
+               },
+               "sprite": {
+                   "type": "string"
+               },
+               "types": {
+                   "type": "array",
+                   "items": {
+                       "type": "string"
+                   }
+               }
+           }
+       }
+   }
+}
