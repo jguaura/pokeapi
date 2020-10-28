@@ -15,6 +15,10 @@ var _compression = _interopRequireDefault(require("compression"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
+
+var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
+
 var _pokemon = _interopRequireDefault(require("./routes/pokemon"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -25,20 +29,59 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // import responseTime from 'response-time'
 // Routes import
-// Initialization
+// Swagger options
+var options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "testesr12123",
+      version: "0.1.0",
+      description: "lremessaskdkasdakdwmkalwfakmdks",
+      license: {
+        name: "MIT",
+        url: "https://spdx.org/licenses/MIT.html"
+      },
+      contact: {
+        name: "LogRocket",
+        url: "https://logrocket.com",
+        email: "info@email.com"
+      }
+    },
+    servers: [{
+      url: "http://localhost:8080/api"
+    }]
+  },
+  apis: ['./app.js']
+};
+var specs = (0, _swaggerJsdoc["default"])(options); // Initialization
+
 var app = (0, _express["default"])(); // Middlewares
 // app.use(responseTime())
 
-app.use((0, _cors["default"])());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://www.jguaura.ml"); // update to match the domain you will make the request from
+
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use
 
-app.get('/', function (req, res) {
-  res.json({
-    message: 'ok'
-  });
+/**
+ * @swagger
+ *  /api/demo:
+ *  get:
+ *  description: get demo
+ *    responses:
+ *       '200':
+ *         description: ok response 
+ */
+
+app.get('/api/demo', function (req, res) {
+  return res.send('okidoki');
 });
+app.use('/api/documentation', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(specs));
 app.use('/api/pokemon', _pokemon["default"]);
 var _default = app;
 exports["default"] = _default;

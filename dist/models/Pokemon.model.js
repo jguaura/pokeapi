@@ -11,6 +11,25 @@ var _db = _interopRequireDefault(require("../database/db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+/**
+ * @swagger
+ * definitions:
+ *  Pokemon:
+ *    type: object
+ *    properties:
+ *      id:
+ *        type: integer
+ *      name:
+ *        type: string
+ *      sprite:
+ *        type: string
+ *      types:
+ *        type: array
+ *      description:
+ *        type: string
+ *      weakto:
+ *        type: array   
+ */
 var Pokemon = _db["default"].define('poketable', {
   id: {
     type: _sequelize.Sequelize.INTEGER,
