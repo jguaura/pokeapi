@@ -29,45 +29,32 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // import responseTime from 'response-time'
 // Routes import
-// Swagger options
-var options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "testesr12123",
-      version: "0.1.0",
-      description: "lremessaskdkasdakdwmkalwfakmdks",
-      license: {
-        name: "MIT",
-        url: "https://spdx.org/licenses/MIT.html"
-      },
-      contact: {
-        name: "LogRocket",
-        url: "https://logrocket.com",
-        email: "info@email.com"
-      }
-    },
-    servers: [{
-      url: "http://localhost:8080/api"
-    }]
-  },
-  apis: ['./app.js']
-};
-var specs = (0, _swaggerJsdoc["default"])(options); // Initialization
+var allowedOrigins = ['https://pokedex.jguaura.ml', 'https://jguaura.ml', 'https://www.pokedex.jguaura.ml', 'https://www.jguaura.ml'];
+
+var corsDelegate = function corsDelegate(req, callback) {
+  var corsOptions;
+
+  if (allowedOrigins.indexOf(req.heaader('Origin')) !== -1) {
+    corsOptions = {
+      origin: true
+    };
+  } else {
+    corsOptions = {
+      origin: false
+    };
+  }
+
+  callback(null, corsOptions);
+}; // Initialization
+
 
 var app = (0, _express["default"])(); // Middlewares
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", ["https://pokedex.jguaura.ml", "https://www.pokedex.jguaura.ml", "https://jguaura.ml"]);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-}); // app.use(cors())
-
+app.use((0, _cors["default"])(corsDelegate));
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use
 
-app.use('/api/documentation', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(specs));
 app.use('/api/pokemon', _pokemon["default"]);
 var _default = app;
 exports["default"] = _default;
