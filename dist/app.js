@@ -29,28 +29,22 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // import responseTime from 'response-time'
 // Routes import
-var allowedOrigins = ['https://pokedex.jguaura.ml', 'https://jguaura.ml', 'https://www.pokedex.jguaura.ml', 'https://www.jguaura.ml'];
-
-var corsDelegate = function corsDelegate(req, callback) {
-  var corsOptions;
-
-  if (allowedOrigins.indexOf(req.heaader('Origin')) !== -1) {
-    corsOptions = {
-      origin: true
-    };
-  } else {
-    corsOptions = {
-      origin: false
-    };
-  }
-
-  callback(null, corsOptions);
-}; // Initialization
-
+var allowedOrigins = ['https://pokedex.jguaura.ml', 'https://jguaura.ml', 'https://www.pokedex.jguaura.ml', 'https://www.jguaura.ml']; // Initialization
 
 var app = (0, _express["default"])(); // Middlewares
 
-app.use((0, _cors["default"])(corsDelegate));
+app.use((0, _cors["default"])({
+  origin: function origin(_origin, callback) {
+    if (!_origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(_origin) === -1) {
+      var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+
+    return callback(null, true);
+  }
+}));
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use

@@ -10,22 +10,22 @@ import swaggerJsDoc from 'swagger-jsdoc'
 import pokemonRoutes from './routes/pokemon'
 
 const allowedOrigins = ['https://pokedex.jguaura.ml', 'https://jguaura.ml', 'https://www.pokedex.jguaura.ml', 'https://www.jguaura.ml']
-const corsDelegate = function (req,callback) {
-    let corsOptions;
-    if (allowedOrigins.indexOf(req.heaader('Origin')) !== -1) {
-        corsOptions = { origin: true }
-    } else {
-        corsOptions = { origin: false }
-    }
-    callback(null, corsOptions)
-}
 
 // Initialization
 const app = express()
 
 // Middlewares
 
-app.use(cors(corsDelegate))
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1){
+            var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.'
+            return callback(new Error(msg), false)
+        }
+    return callback(null, true)
+    }
+}))
 app.use(morgan('dev'))
 app.use(compression())
 app.use(json())
