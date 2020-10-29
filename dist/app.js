@@ -56,31 +56,18 @@ var options = {
 var specs = (0, _swaggerJsdoc["default"])(options); // Initialization
 
 var app = (0, _express["default"])(); // Middlewares
-// app.use(responseTime())
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://www.jguaura.ml"); // update to match the domain you will make the request from
 
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-});
+}); // app.use(cors())
+
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _compression["default"])());
 app.use((0, _express.json)()); // Routes use
 
-/**
- * @swagger
- *  /api/demo:
- *  get:
- *  description: get demo
- *    responses:
- *       '200':
- *         description: ok response 
- */
-
-app.get('/api/demo', function (req, res) {
-  return res.send('okidoki');
-});
 app.use('/api/documentation', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(specs));
 app.use('/api/pokemon', _pokemon["default"]);
 var _default = app;

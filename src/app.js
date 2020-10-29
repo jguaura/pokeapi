@@ -42,30 +42,17 @@ const specs = swaggerJsDoc(options)
 const app = express()
 
 // Middlewares
-// app.use(responseTime())
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://www.jguaura.ml"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
+// app.use(cors())
 app.use(morgan('dev'))
 app.use(compression())
 app.use(json())
 
 // Routes use
-
-/**
- * @swagger
- *  /api/demo:
- *  get:
- *  description: get demo
- *    responses:
- *       '200':
- *         description: ok response 
- */
-
-app.get('/api/demo', (req, res) => res.send('okidoki'))
 app.use('/api/documentation', swaggerUI.serve, swaggerUI.setup(specs))
 app.use('/api/pokemon', pokemonRoutes)
 

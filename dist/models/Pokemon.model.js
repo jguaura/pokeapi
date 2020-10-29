@@ -49,6 +49,9 @@ var Pokemon = _db["default"].define('poketable', {
   },
   weakto: {
     type: _sequelize.Sequelize.ARRAY(_sequelize.Sequelize.TEXT)
+  },
+  number: {
+    type: _sequelize.Sequelize.TEXT
   }
 }, {
   timestamps: false,

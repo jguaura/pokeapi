@@ -27,7 +27,8 @@ const Pokemon = sequelize.define('poketable', {
     sprite: { type: Sequelize.TEXT },
     types: { type: Sequelize.ARRAY(Sequelize.TEXT) },
     description: { type: Sequelize.TEXT },
-    weakto: { type: Sequelize.ARRAY(Sequelize.TEXT) }
+    weakto: { type: Sequelize.ARRAY(Sequelize.TEXT) },
+    number: { type: Sequelize.TEXT }
 }, {
     timestamps: false,
     freezeTableName: true

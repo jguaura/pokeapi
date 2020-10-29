@@ -17,7 +17,7 @@ export async function getAllPokemons(req, res) {
 
     try {
         const response = await Pokemon.findAndCountAll({
-            attributes: ['id', 'name', 'sprite', 'types'],
+            attributes: ['id', 'name', 'sprite', 'types', 'number'],
             limit: limit,
             offset: offset,
             type: type,
